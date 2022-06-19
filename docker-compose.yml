@@ -1,0 +1,18 @@
+version: "3.7"
+services:
+  db:
+    image: postgres3
+    environment:
+      POSTGRES_PASSWORD: olakase123
+      POSTGRES_USER: postgres
+      POSTGRES_DB: tasksdb
+    volumes:
+      - ./pgdata:/var/lib/postgresql/data
+    ports:
+      - '5432:5432'
+  web:
+    image: tpi-docker
+    depends_on:
+      - db
+    ports:
+      - "3000:3000"
